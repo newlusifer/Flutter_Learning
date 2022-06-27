@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -24,6 +26,13 @@ class _HomeState extends State<Home> {
         // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[
           const Text('Home Screen Naaaa!'),
+          const Text('Home Screen Jaaaa!'),
+          const Text('Home Screen Waaaa!'),
+          OutlinedButton(
+              onPressed: () {
+                debugPrint('test');
+              },
+              child: const Text('test jaaa'))
         ],
       )),
     );
