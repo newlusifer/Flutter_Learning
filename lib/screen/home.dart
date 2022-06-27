@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
         mainAxisAlignment: MainAxisAlignment.center,
         // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[
-          const Text('Home Screen'),
+          const Text('Home Screen Naaaa!'),
         ],
       )),
     );
