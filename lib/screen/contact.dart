@@ -16,7 +16,7 @@ class _Contact extends State<Contact> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Contact'),
+        title: const Text('Contact'),
       ),
       body: Center(
           child: Column(

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'screen/launcher.dart';
 import 'screen/signIn.dart';
+import 'screen/auth_loading.dart';
 
 import 'models/counter_model.dart';
 
@@ -25,8 +26,8 @@ class MyApp extends StatelessWidget {
           title: 'First Flutter App',
           initialRoute: '/', // สามารถใช้ home แทนได้
           routes: {
-            Launcher.routeName: (context) => Launcher(),
-            // SignIn.routeName: (context) => SignIn(),
+            // Launcher.routeName: (context) => Launcher(),
+            AuthLoading.routeName: (context) => AuthLoading(),
           },
         ));
   }
