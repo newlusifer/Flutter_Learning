@@ -1,33 +1,32 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/counter_model.dart';
 
-class Home extends StatefulWidget {
-  static const routeName = '/';
+class BookShelf extends StatefulWidget {
+  static const routeName = '/bookShelf';
 
-  const Home({Key? key}) : super(key: key);
+  const BookShelf({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _HomeState();
+    return _BookShelf();
   }
 }
 
-class _HomeState extends State<Home> {
+class _BookShelf extends State<BookShelf> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
+        title: Text('Home'),
       ),
       body: Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        // ignore: prefer_const_literals_to_create_immutables
         children: <Widget>[
-          const Text('Home Screen Naaaa!'),
-          const Text('Home Screen Jaaaa!'),
-          const Text('Home Screen Waaaa!'),
+          Text('Home Screen Naaaa!'),
+          Text('Home Screen Jaaaa!'),
+          Text('${context.watch<Counter>().count}'),
           OutlinedButton(
               onPressed: () {
                 debugPrint('test');

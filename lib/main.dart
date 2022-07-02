@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_new/Models/user_model.dart';
 import 'package:provider/provider.dart';
 
-import 'screen/launcher.dart';
+import 'screen/mainMenu.dart';
 import 'screen/signIn.dart';
-import 'screen/auth_loading.dart';
+import 'screen/authLoading.dart';
 
 import 'models/counter_model.dart';
 
@@ -17,11 +18,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
-        create: (context) => Counter(),
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => Counter()),
+          ChangeNotifierProvider(create: (context) => User())
+        ],
         child: MaterialApp(
           theme: ThemeData(
-            primarySwatch: Colors.pink,
+            primarySwatch: Colors.blue,
           ),
           title: 'First Flutter App',
           initialRoute: '/', // สามารถใช้ home แทนได้

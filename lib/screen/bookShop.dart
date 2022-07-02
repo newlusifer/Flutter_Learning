@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class Contact extends StatefulWidget {
-  static const routeName = '/';
+class BookShop extends StatefulWidget {
+  static const routeName = '/bookShop';
 
-  const Contact({Key? key}) : super(key: key);
+  const BookShop({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _Contact();
+    return _BookShop();
   }
 }
 
-class _Contact extends State<Contact> {
+class _BookShop extends State<BookShop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
