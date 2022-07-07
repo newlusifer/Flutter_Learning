@@ -22,7 +22,7 @@ class _BookShelf extends State<BookShelf> {
     {
       'name': 'โกรธแค้นที่แสนหวาน',
       'rating': 5,
-      'prize': 500,
+      'price': 500,
       'images':
           'https://storage.naiin.com/system/application/bookstore/resource/product/202205/548250/6000060494_front_XXL.jpg?imgname=%E0%B9%82%E0%B8%81%E0%B8%A3%E0%B8%98%E0%B9%81%E0%B8%84%E0%B9%89%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B9%81%E0%B8%AA%E0%B8%99%E0%B8%AB%E0%B8%A7%E0%B8%B2%E0%B8%99-(%E0%B8%9F%E0%B8%A3%E0%B8%B5)',
       'writer': 'กรแก้ว',
@@ -31,7 +31,7 @@ class _BookShelf extends State<BookShelf> {
     {
       'name': 'เร้นรักใต้เงาจันทร์ - อาโกว ชะตารักนิรันดร์',
       'rating': 4,
-      'prize': 400,
+      'price': 400,
       'images':
           'https://storage.naiin.com/system/application/bookstore/resource/product/202205/548230/6000060483_front_XXL.jpg?imgname=%E0%B9%80%E0%B8%A3%E0%B9%89%E0%B8%99%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B9%83%E0%B8%95%E0%B9%89%E0%B9%80%E0%B8%87%E0%B8%B2%E0%B8%88%E0%B8%B1%E0%B8%99%E0%B8%97%E0%B8%A3%E0%B9%8C---%E0%B8%AD%E0%B8%B2%E0%B9%82%E0%B8%81%E0%B8%A7-%E0%B8%8A%E0%B8%B0%E0%B8%95%E0%B8%B2%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B8%99%E0%B8%B4%E0%B8%A3%E0%B8%B1%E0%B8%99%E0%B8%94%E0%B8%A3%E0%B9%8C-(%E0%B8%9F%E0%B8%A3%E0%B8%B5)',
       'writer': 'T.O.P',
@@ -40,7 +40,7 @@ class _BookShelf extends State<BookShelf> {
     {
       'name': 'เพียงครั้งในค่ำคืน',
       'rating': 3,
-      'prize': 300,
+      'price': 300,
       'images':
           'https://storage.naiin.com/system/application/bookstore/resource/product/202204/546894/6000059916_front_XXL.jpg?imgname=%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%AD%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%87-%E0%B9%80%E0%B8%9E%E0%B8%B5%E0%B8%A2%E0%B8%87%E0%B8%84%E0%B8%A3%E0%B8%B1%E0%B9%89%E0%B8%87%E0%B9%83%E0%B8%99%E0%B8%84%E0%B9%88%E0%B8%B3%E0%B8%84%E0%B8%B7%E0%B8%99-(%E0%B8%9F%E0%B8%A3%E0%B8%B5)',
       'writer': 'แพรสีนิล',
@@ -49,7 +49,7 @@ class _BookShelf extends State<BookShelf> {
     {
       'name': 'ชีวิตดีขึ้นด้วยการแผ่เมตตาให้ตัวเอง',
       'rating': 2,
-      'prize': 200,
+      'price': 200,
       'images':
           'https://storage.naiin.com/system/application/bookstore/resource/product/202204/546518/6000059721_front_XXL.jpg?imgname=%E0%B8%8A%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%95%E0%B8%94%E0%B8%B5%E0%B8%82%E0%B8%B6%E0%B9%89%E0%B8%99%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%81%E0%B8%9C%E0%B9%88%E0%B9%80%E0%B8%A1%E0%B8%95%E0%B8%95%E0%B8%B2%E0%B9%83%E0%B8%AB%E0%B9%89%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B9%80%E0%B8%AD%E0%B8%87-(%E0%B8%9F%E0%B8%A3%E0%B8%B5)',
       'writer': 'จันทร์มังกร',
@@ -58,11 +58,47 @@ class _BookShelf extends State<BookShelf> {
     {
       'name': 'กักตัว (ไม่) กักใจ',
       'rating': 1,
-      'prize': 100,
+      'price': 100,
       'images':
           'https://storage.naiin.com/system/application/bookstore/resource/product/202203/542960/6000057191_front_XXL.jpg?imgname=%E0%B8%95%E0%B8%B1%E0%B8%A7%E0%B8%AD%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%87-%E0%B8%81%E0%B8%B1%E0%B8%81%E0%B8%95%E0%B8%B1%E0%B8%A7-(%E0%B9%84%E0%B8%A1%E0%B9%88)-%E0%B8%81%E0%B8%B1%E0%B8%81%E0%B9%83%E0%B8%88-(%E0%B8%9F%E0%B8%A3%E0%B8%B5)',
       'writer': 'แพรสีนิล',
       'chapter': 'ตอนที่ 5',
+    },
+    {
+      'name': 'ขอความรักที ตอนพิเศษ',
+      'rating': 5,
+      'price': 400,
+      'images':
+          'https://storage.naiin.com/system/application/bookstore/resource/product/202207/552745/6000061518_front_XXL.jpg?imgname=%E0%B8%82%E0%B8%AD%E0%B8%84%E0%B8%A7%E0%B8%B2%E0%B8%A1%E0%B8%A3%E0%B8%B1%E0%B8%81%E0%B8%97%E0%B8%B5-%E0%B8%95%E0%B8%AD%E0%B8%99%E0%B8%9E%E0%B8%B4%E0%B9%80%E0%B8%A8%E0%B8%A9-(%E0%B8%9F%E0%B8%A3%E0%B8%B5)',
+      'writer': 'ไหมขวัญ',
+      'chapter': 'ตอนที่ 5',
+    },
+    {
+      'name': 'เรือโกหก',
+      'rating': 4,
+      'price': 300,
+      'images':
+          'https://storage.naiin.com/system/application/bookstore/resource/product/202206/551017/6000061203_front_XXL.jpg?imgname=%E0%B9%80%E0%B8%A3%E0%B8%B7%E0%B8%AD%E0%B9%82%E0%B8%81%E0%B8%AB%E0%B8%81-(%E0%B8%9F%E0%B8%A3%E0%B8%B5)',
+      'writer': 'ยูบิค',
+      'chapter': 'ตอนที่ 4',
+    },
+    {
+      'name': 'ประสบการณ์เที่ยวเกาะพีพี',
+      'rating': 3,
+      'price': 200,
+      'images':
+          'https://storage.naiin.com/system/application/bookstore/resource/product/202206/549383/6000060759_front_XXL.jpg?imgname=%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%AA%E0%B8%9A%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%93%E0%B9%8C%E0%B9%80%E0%B8%97%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B9%80%E0%B8%81%E0%B8%B2%E0%B8%B0%E0%B8%9E%E0%B8%B5%E0%B8%9E%E0%B8%B5-(%E0%B8%9F%E0%B8%A3%E0%B8%B5)',
+      'writer': 'ไข่มุกราตรี',
+      'chapter': 'ตอนที่ 3',
+    },
+    {
+      'name': 'ปฏิพัทธ์แสนหวาน',
+      'rating': 2,
+      'price': 100,
+      'images':
+          'https://storage.naiin.com/system/application/bookstore/resource/product/202201/540556/6000055984_front_XXL.jpg?imgname=%E0%B8%9B%E0%B8%8F%E0%B8%B4%E0%B8%9E%E0%B8%B1%E0%B8%97%E0%B8%98%E0%B9%8C%E0%B9%81%E0%B8%AA%E0%B8%99%E0%B8%AB%E0%B8%A7%E0%B8%B2%E0%B8%99-(%E0%B8%9F%E0%B8%A3%E0%B8%B5)',
+      'writer': 'ชฎายุ',
+      'chapter': 'ตอนที่ 2',
     },
   ];
 
@@ -78,7 +114,8 @@ class _BookShelf extends State<BookShelf> {
             child: Column(
       children: <Widget>[
         Container(
-            margin: EdgeInsets.only(top: 15),
+            margin:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
             child: Text(
               'BookShelf',
               style: TextStyle(
@@ -99,7 +136,7 @@ class DottedLine_New extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+        margin: EdgeInsets.all(MediaQuery.of(context).size.width * 0.03),
         child: DottedLine());
   }
 }

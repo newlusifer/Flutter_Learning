@@ -242,7 +242,7 @@ class _SignIn extends State<SignIn> {
                             ),
                             Container(
                                 margin: EdgeInsets.all(
-                                    MediaQuery.of(context).size.width * 0.04),
+                                    MediaQuery.of(context).size.width * 0.03),
                                 child: ElevatedButton(
                                   onPressed: () {
                                     _check_login();
