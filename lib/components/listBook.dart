@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:ffi';
 
+import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,102 +18,291 @@ class ListBook extends StatefulWidget {
 }
 
 class _ListBook extends State<ListBook> {
+  bool _single_column = false;
+  bool get single_column => _single_column;
+  void set_status_column(status) {
+    setState(() {
+      _single_column = status;
+    });
+    //log('check --> ${_single_column}');
+  }
+
   @override
   Widget build(BuildContext context) {
     double widthScreen = MediaQuery.of(context).size.width;
     double heightScreen = MediaQuery.of(context).size.width;
-    return Center(
-        child: SizedBox(
-      height: MediaQuery.of(context).size.height * 0.795,
-      width: MediaQuery.of(context).size.width,
-      child: GridView.count(
-        padding: EdgeInsets.only(
-            top: widthScreen * 0.01,
-            left: widthScreen * 0.01,
-            right: widthScreen * 0.01,
-            bottom: widthScreen * 0.01),
-        crossAxisSpacing: widthScreen * 0.02,
-        mainAxisSpacing: heightScreen * 0.01,
-        crossAxisCount: 3,
-        childAspectRatio: (1 / 1.5),
-        children: List.generate(widget.data_list.length, (index) {
-          return Container(
-              // color: Color.fromARGB(255, 247, 156, 156),
-              child: Column(children: <Widget>[
-            Container(
-              width: widthScreen * 0.25,
-              height: heightScreen * 0.3,
-              child: ElevatedButton(
-                  onPressed: () {
-                    log('testjaa');
-                  },
-                  child: FittedBox(
-                      child:
-                          Image.network('${widget.data_list[index]['images']}'),
-                      fit: BoxFit.fill),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white.withOpacity(0.1),
-                      elevation: 10,
-                      padding: EdgeInsets.all(0.0))),
-            ),
-            Container(
-              padding: EdgeInsets.only(
-                left: widthScreen * 0.02,
-                right: widthScreen * 0.02,
+    return single_column == false
+        ? Center(
+            child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                    onPressed: () {
+                      set_status_column(!_single_column);
+                    },
+                    icon: Icon(FontAwesomeIcons.tableCellsLarge)),
               ),
-              margin: EdgeInsets.only(top: heightScreen * 0.01),
-              child: Text(
-                '${widget.data_list[index]['name']}',
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.black, fontSize: 14),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.755,
+                width: MediaQuery.of(context).size.width,
+                child: GridView.count(
+                  padding: EdgeInsets.only(
+                      top: widthScreen * 0.01,
+                      left: widthScreen * 0.01,
+                      right: widthScreen * 0.01,
+                      bottom: widthScreen * 0.01),
+                  crossAxisSpacing: widthScreen * 0.02,
+                  mainAxisSpacing: heightScreen * 0.02,
+                  crossAxisCount: 3,
+                  childAspectRatio: (1 / 2.2),
+                  children: List.generate(widget.data_list.length, (index) {
+                    return Container(
+                        // color: Color.fromARGB(255, 247, 156, 156),
+                        child: Column(children: <Widget>[
+                      GestureDetector(
+                        onTap: () => log('message'),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 5,
+                                offset:
+                                    Offset(0, 6), // changes position of shadow
+                              ),
+                            ],
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    '${widget.data_list[index]['images']}'),
+                                fit: BoxFit.contain),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(
+                                MediaQuery.of(context).size.width * 0.22),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                          left: widthScreen * 0.02,
+                          right: widthScreen * 0.02,
+                        ),
+                        margin: EdgeInsets.only(top: heightScreen * 0.01),
+                        child: Text(
+                          '${widget.data_list[index]['name']}',
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: 14),
+                        ),
+                      ),
+                      Text(
+                        '${widget.data_list[index]['chapter']} , ${widget.data_list[index]['writer']}',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(color: Colors.black),
+                      ),
+                      Spacer(),
+                      Container(
+                        padding: EdgeInsets.only(
+                          top: 0,
+                          left: widthScreen * 0.02,
+                          right: widthScreen * 0.02,
+                          bottom: widthScreen * 0.01,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Row(
+                              //   mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                for (int i = 1;
+                                    i <= widget.data_list[index]['rating'];
+                                    i++)
+                                  Container(
+                                      padding: EdgeInsets.only(
+                                          left: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.005),
+                                      child: Icon(
+                                        FontAwesomeIcons.solidHeart,
+                                        color: Colors.black,
+                                        size:
+                                            MediaQuery.of(context).size.width *
+                                                0.03,
+                                      )),
+                              ],
+                            ),
+                            Text(
+                              '${widget.data_list[index]['price']}',
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ]));
+                  }),
+                ),
+              )
+            ],
+          ))
+        : Center(
+            child: Column(
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                    onPressed: () {
+                      set_status_column(!_single_column);
+                    },
+                    icon: Icon(FontAwesomeIcons.tableCells)),
               ),
-            ),
-            Text(
-              '${widget.data_list[index]['chapter']}',
-              textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.black),
-            ),
-            Spacer(),
-            Container(
-              padding: EdgeInsets.only(
-                top: 0,
-                left: widthScreen * 0.02,
-                right: widthScreen * 0.02,
-                bottom: widthScreen * 0.01,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      for (int i = 1;
-                          i <= widget.data_list[index]['rating'];
-                          i++)
-                        Container(
-                            padding: EdgeInsets.only(
-                                left:
-                                    MediaQuery.of(context).size.width * 0.005),
-                            child: Icon(
-                              FontAwesomeIcons.solidHeart,
-                              color: Colors.black,
-                              size: MediaQuery.of(context).size.width * 0.03,
-                            )),
-                    ],
-                  ),
-                  Text(
-                    '${widget.data_list[index]['price']}',
-                    style: const TextStyle(color: Colors.black, fontSize: 12),
-                  ),
-                ],
-              ),
-            ),
-          ]));
-        }),
-      ),
-    ));
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.755,
+                width: MediaQuery.of(context).size.width,
+                child: GridView.count(
+                  padding: EdgeInsets.only(
+                      top: widthScreen * 0,
+                      left: widthScreen * 0.01,
+                      right: widthScreen * 0.01,
+                      bottom: widthScreen * 0.01),
+                  crossAxisSpacing: widthScreen * 0.02,
+                  mainAxisSpacing: heightScreen * 0.02,
+                  crossAxisCount: 1,
+                  childAspectRatio: (1 / 0.6),
+                  children: List.generate(widget.data_list.length, (index) {
+                    return GestureDetector(
+                        onTap: () {
+                          log('tab !!!');
+                        },
+                        child: Container(
+                            margin: EdgeInsets.only(
+                                left: widthScreen * 0.02,
+                                right: widthScreen * 0.02),
+                            decoration: DottedDecoration(),
+                            // color: Color.fromARGB(255, 247, 156, 156),
+                            child: Row(children: <Widget>[
+                              GestureDetector(
+                                onTap: () => log('message'),
+                                child: Container(
+                                  width: widthScreen * 0.4,
+                                  height: heightScreen * 0.5,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        blurRadius: 4,
+                                        offset: Offset(4, 8), // Shadow position
+                                      ),
+                                    ],
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            '${widget.data_list[index]['images']}'),
+                                        fit: BoxFit.contain),
+                                  ),
+                                ),
+                              ),
+                              Column(
+                                children: <Widget>[
+                                  Container(
+                                    height: heightScreen * 0.03,
+                                  ),
+                                  Container(
+                                    // color: Colors.amber,
+                                    width: widthScreen * 0.5,
+                                    padding: EdgeInsets.only(
+                                      left: widthScreen * 0.02,
+                                      right: widthScreen * 0.01,
+                                    ),
+                                    margin: EdgeInsets.only(
+                                        top: heightScreen * 0.01,
+                                        left: widthScreen * 0.01),
+                                    child: Text(
+                                      '${widget.data_list[index]['synopsis']}',
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.left,
+                                      maxLines: 9,
+                                      style: const TextStyle(
+                                          color: Colors.black, fontSize: 14),
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Container(
+                                    // color: Colors.blue,
+                                    width: widthScreen * 0.54,
+                                    padding: EdgeInsets.only(
+                                      top: 0,
+                                      left: widthScreen * 0.04,
+                                      right: 0,
+                                      bottom: widthScreen * 0.04,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: <Widget>[
+                                        Row(
+                                          //   mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: <Widget>[
+                                            for (int i = 1;
+                                                i <=
+                                                    widget.data_list[index]
+                                                        ['rating'];
+                                                i++)
+                                              Container(
+                                                  padding: EdgeInsets.only(
+                                                      left:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.005),
+                                                  child: Icon(
+                                                    FontAwesomeIcons.solidHeart,
+                                                    color: Colors.black,
+                                                    size: MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.03,
+                                                  )),
+                                          ],
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.only(
+                                              left: widthScreen * 0.02),
+                                          child: Text(
+                                            '${widget.data_list[index]['price']}',
+                                            style: const TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 12),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Icon(
+                                                FontAwesomeIcons.caretRight,
+                                                size: widthScreen * 0.08),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ])));
+                  }),
+                ),
+              )
+            ],
+          ));
   }
 }
