@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_new/Models/user_model.dart';
 import 'package:provider/provider.dart';
 
-import 'screen/mainMenu.dart';
+import 'navigator/BottomTabNavigation.dart';
 import 'screen/signIn.dart';
 import 'screen/authLoading.dart';
 

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:dotted_decoration/dotted_decoration.dart';
 
 class BookInfo extends StatefulWidget {
   static const routeName = '/bookInfo';
@@ -39,16 +40,42 @@ class _BookInfo extends State<BookInfo> {
         body: Center(
             child: Column(
       children: <Widget>[
-        Container(
-            margin:
-                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.05),
-            child: Text(
-              'BookInfo',
-              style: TextStyle(
-                fontSize: 20,
-                color: Color(0xFF000000),
-              ),
-            )),
+        Row(
+          children: <Widget>[
+            GestureDetector(
+                onTap: (() {
+                  log('test');
+                }),
+                child: Container(
+                    margin: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.05),
+                    child: Icon(
+                      FontAwesomeIcons.caretLeft,
+                      size: widthScreen * 0.06,
+                    ))),
+            Container(
+                margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.05),
+                child: Text(
+                  '${arg['name']}',
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: Color(0xFF000000),
+                  ),
+                )),
+            Container(
+                margin: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.05),
+                child: Image.asset(
+                  'assets/images/Surasi_icon.png',
+                  width: 50,
+                  height: 50,
+                )),
+          ],
+        ),
         DottedLine_New(),
         Row(
           children: <Widget>[
@@ -185,6 +212,83 @@ class _BookInfo extends State<BookInfo> {
             textAlign: TextAlign.left,
             maxLines: 4,
             style: const TextStyle(color: Colors.black, fontSize: 14),
+          ),
+        ),
+        Container(
+            margin: EdgeInsets.only(
+                top: MediaQuery.of(context).size.width * 0,
+                left: MediaQuery.of(context).size.width * 0.03,
+                right: MediaQuery.of(context).size.width * 0.03,
+                bottom: 0),
+            child: DottedLine()),
+        Expanded(
+          child: Container(
+            margin: EdgeInsets.only(bottom: heightScreen * 0.03),
+            width: widthScreen * 0.93,
+            //  color: Colors.amber,
+            child: SingleChildScrollView(
+                child: Column(
+              children: <Widget>[
+                for (int i = 1; i <= 5; i++)
+                  Container(
+                      decoration: DottedDecoration(),
+                      child: GestureDetector(
+                        onTap: () {
+                          log('test');
+                        },
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                                // color: Colors.blue,
+                                width: widthScreen * 0.25,
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                          bottom: heightScreen * 0.02,
+                                          top: heightScreen * 0.02),
+                                      child: Text(
+                                        'Chapter ${i} : ',
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                            color: Colors.black, fontSize: 14),
+                                      ),
+                                    ),
+                                    Icon(
+                                      FontAwesomeIcons.book,
+                                      size: widthScreen * 0.08,
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                          bottom: heightScreen * 0.02,
+                                          top: heightScreen * 0.02),
+                                      child: Text(
+                                        'Read',
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                            color: Colors.black, fontSize: 14),
+                                      ),
+                                    ),
+                                  ],
+                                )),
+                            Expanded(
+                              child: Container(
+                                padding: EdgeInsets.all(widthScreen * 0.03),
+                                child: Text(
+                                  '${arg['synopsis']}',
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.left,
+                                  maxLines: 4,
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 14),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )),
+              ],
+            )),
           ),
         ),
       ],
