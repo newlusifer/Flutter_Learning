@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:dotted_decoration/dotted_decoration.dart';
+import '../components/headerBackBtn.dart';
+import 'bookReading.dart';
 
 class BookInfo extends StatefulWidget {
   static const routeName = '/bookInfo';
@@ -31,6 +33,17 @@ class _BookInfo extends State<BookInfo> {
       });
     }
 
+    _open_readingBook(index) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => BookReading(),
+              settings: RouteSettings(arguments: <dynamic, dynamic>{
+                'chapter': index,
+                'dataBook': arg,
+              })));
+    }
+
     return Scaffold(
 
         // appBar: AppBar(
@@ -40,43 +53,7 @@ class _BookInfo extends State<BookInfo> {
         body: Center(
             child: Column(
       children: <Widget>[
-        Row(
-          children: <Widget>[
-            GestureDetector(
-                onTap: (() {
-                  log('test');
-                }),
-                child: Container(
-                    margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height * 0.05),
-                    child: Icon(
-                      FontAwesomeIcons.caretLeft,
-                      size: widthScreen * 0.06,
-                    ))),
-            Container(
-                margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.05),
-                child: Text(
-                  '${arg['name']}',
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  style: TextStyle(
-                    fontSize: 17,
-                    color: Color(0xFF000000),
-                  ),
-                )),
-            Container(
-                margin: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.05),
-                child: Image.asset(
-                  'assets/images/Surasi_icon.png',
-                  width: 50,
-                  height: 50,
-                )),
-          ],
-        ),
-        DottedLine_New(),
+        HeaderBackBtn(title: '${arg['name']}'),
         Row(
           children: <Widget>[
             Container(
@@ -234,7 +211,7 @@ class _BookInfo extends State<BookInfo> {
                       decoration: DottedDecoration(),
                       child: GestureDetector(
                         onTap: () {
-                          log('test');
+                          _open_readingBook(i);
                         },
                         child: Row(
                           children: <Widget>[
@@ -309,4 +286,14 @@ class DottedLine_New extends StatelessWidget {
             bottom: 0),
         child: DottedLine());
   }
+}
+
+class ChapterAndBookData {
+  ChapterAndBookData({required this.chapter, required this.bookdata});
+  var chapter;
+  var bookdata;
+
+  // bool get isGermanCapital {
+  //   return country == 'Germany' && city == 'Berlin';
+  // }
 }
