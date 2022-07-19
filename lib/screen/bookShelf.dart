@@ -182,6 +182,7 @@ class _BookShelf extends State<BookShelf> {
           data_list: bookList,
           single_column_assign: true,
           routName: BookInfo(),
+          hide_change_column: false,
         ),
       ],
     )));

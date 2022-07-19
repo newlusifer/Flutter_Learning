@@ -20,6 +20,13 @@ class BookInfo extends StatefulWidget {
 class _BookInfo extends State<BookInfo> {
   bool _statusBook = true;
   bool get statusBook => _statusBook;
+
+  @override //run when page is load
+  void initState() {
+    super.initState();
+    log('welcome!!!');
+  }
+
   @override
   Widget build(BuildContext context) {
     final arg =
@@ -60,7 +67,7 @@ class _BookInfo extends State<BookInfo> {
               margin: EdgeInsets.only(
                   top: heightScreen * 0.02, left: widthScreen * 0.02),
               width: widthScreen * 0.4,
-              height: heightScreen * 0.55,
+              height: heightScreen * 0.57,
               child: Image.network(arg['images']),
             ),
             Expanded(
@@ -73,6 +80,44 @@ class _BookInfo extends State<BookInfo> {
                   //width: widthScreen * 0.55,
                   child: Column(
                     children: <Widget>[
+                      Container(
+                        height: heightScreen * 0.02,
+                      ),
+                      Visibility(
+                        visible: !arg['statusBuy'],
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Row(
+                              children: <Widget>[
+                                FaIcon(
+                                  FontAwesomeIcons.cartShopping,
+                                  size: widthScreen * 0.05,
+                                ),
+                                FaIcon(
+                                  FontAwesomeIcons.plus,
+                                  size: widthScreen * 0.04,
+                                ),
+                                Expanded(
+                                    child: Container(
+                                  // color: Colors.amber,
+                                  height: heightScreen * 0.07,
+                                  margin: EdgeInsets.only(
+                                      bottom: heightScreen * 0.01),
+                                  padding: EdgeInsets.only(
+                                      left: widthScreen * 0.03,
+                                      right: widthScreen * 0.03),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      log('message');
+                                    },
+                                    child: Text('Add to cart'),
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Color(0xff31859b)),
+                                  ),
+                                )),
+                              ],
+                            )),
+                      ),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -182,92 +227,123 @@ class _BookInfo extends State<BookInfo> {
           ],
         ),
         Container(
-          padding: EdgeInsets.all(widthScreen * 0.03),
+          padding: EdgeInsets.only(
+              top: widthScreen * 0.03,
+              left: widthScreen * 0.03,
+              right: widthScreen * 0.03,
+              bottom: arg['statusBuy'] == true ? widthScreen * 0.03 : 0),
           child: Text(
             '${arg['synopsis']}',
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.left,
-            maxLines: 4,
+            maxLines: arg['statusBuy'] == true ? 4 : 11,
             style: const TextStyle(color: Colors.black, fontSize: 14),
           ),
         ),
-        Container(
-            margin: EdgeInsets.only(
-                top: MediaQuery.of(context).size.width * 0,
-                left: MediaQuery.of(context).size.width * 0.03,
-                right: MediaQuery.of(context).size.width * 0.03,
-                bottom: 0),
-            child: DottedLine()),
-        Expanded(
+        Visibility(
+          visible: arg['statusBuy'],
           child: Container(
-            margin: EdgeInsets.only(bottom: heightScreen * 0.03),
-            width: widthScreen * 0.93,
-            //  color: Colors.amber,
-            child: SingleChildScrollView(
-                child: Column(
-              children: <Widget>[
-                for (int i = 1; i <= 5; i++)
-                  Container(
-                      decoration: DottedDecoration(),
-                      child: GestureDetector(
-                        onTap: () {
-                          _open_readingBook(i);
-                        },
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                                // color: Colors.blue,
-                                width: widthScreen * 0.25,
-                                child: Column(
-                                  children: <Widget>[
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          bottom: heightScreen * 0.02,
-                                          top: heightScreen * 0.02),
-                                      child: Text(
-                                        'Chapter ${i} : ',
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            color: Colors.black, fontSize: 14),
+              margin: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.width * 0,
+                  left: MediaQuery.of(context).size.width * 0.03,
+                  right: MediaQuery.of(context).size.width * 0.03,
+                  bottom: 0),
+              child: DottedLine()),
+        ),
+        Visibility(
+          visible: arg['statusBuy'],
+          child: Expanded(
+            child: Container(
+              margin: EdgeInsets.only(bottom: heightScreen * 0.03),
+              width: widthScreen * 0.93,
+              //  color: Colors.amber,
+              child: SingleChildScrollView(
+                  child: Column(
+                children: <Widget>[
+                  for (int i = 1; i <= 5; i++)
+                    Container(
+                        decoration: DottedDecoration(),
+                        child: GestureDetector(
+                          onTap: () {
+                            _open_readingBook(i);
+                          },
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                  // color: Colors.blue,
+                                  width: widthScreen * 0.25,
+                                  child: Column(
+                                    children: <Widget>[
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                            bottom: heightScreen * 0.02,
+                                            top: heightScreen * 0.02),
+                                        child: Text(
+                                          'Chapter ${i} : ',
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14),
+                                        ),
                                       ),
-                                    ),
-                                    Icon(
-                                      FontAwesomeIcons.book,
-                                      size: widthScreen * 0.08,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          bottom: heightScreen * 0.02,
-                                          top: heightScreen * 0.02),
-                                      child: Text(
-                                        'Read',
-                                        textAlign: TextAlign.center,
-                                        style: const TextStyle(
-                                            color: Colors.black, fontSize: 14),
+                                      Icon(
+                                        FontAwesomeIcons.book,
+                                        size: widthScreen * 0.08,
                                       ),
-                                    ),
-                                  ],
-                                )),
-                            Expanded(
-                              child: Container(
-                                padding: EdgeInsets.all(widthScreen * 0.03),
-                                child: Text(
-                                  '${arg['synopsis']}',
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.left,
-                                  maxLines: 4,
-                                  style: const TextStyle(
-                                      color: Colors.black, fontSize: 14),
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                            bottom: heightScreen * 0.02,
+                                            top: heightScreen * 0.02),
+                                        child: Text(
+                                          'Read',
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14),
+                                        ),
+                                      ),
+                                    ],
+                                  )),
+                              Expanded(
+                                child: Container(
+                                  padding: EdgeInsets.all(widthScreen * 0.03),
+                                  child: Text(
+                                    '${arg['synopsis']}',
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.left,
+                                    maxLines: 4,
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 14),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      )),
-              ],
-            )),
+                            ],
+                          ),
+                        )),
+                ],
+              )),
+            ),
           ),
         ),
+        Visibility(
+            visible: !arg['statusBuy'],
+            child: Expanded(
+                child: Container(
+              width: widthScreen,
+              padding: EdgeInsets.only(
+                  left: widthScreen * 0.03,
+                  right: widthScreen * 0.03,
+                  top: heightScreen * 0.025,
+                  bottom: heightScreen * 0.03),
+              // color: Colors.amber,
+              child: ElevatedButton(
+                onPressed: () {
+                  log('message');
+                },
+                child: Text('Pay this book'),
+                style: ElevatedButton.styleFrom(primary: Color(0xff205867)),
+              ),
+            ))),
       ],
     )));
   }
@@ -286,14 +362,4 @@ class DottedLine_New extends StatelessWidget {
             bottom: 0),
         child: DottedLine());
   }
-}
-
-class ChapterAndBookData {
-  ChapterAndBookData({required this.chapter, required this.bookdata});
-  var chapter;
-  var bookdata;
-
-  // bool get isGermanCapital {
-  //   return country == 'Germany' && city == 'Berlin';
-  // }
 }

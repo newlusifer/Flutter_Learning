@@ -181,6 +181,7 @@ class _UpdateBook extends State<UpdateBook> {
           data_list: bookList_update,
           single_column_assign: false,
           routName: BookInfo(),
+          hide_change_column: false,
         ),
       ],
     )));

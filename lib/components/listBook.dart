@@ -12,13 +12,15 @@ import 'package:responsive_grid_list/responsive_grid_list.dart';
 class ListBook extends StatefulWidget {
   List<Map> data_list = <Map>[];
   bool single_column_assign;
+  bool hide_change_column;
   //VoidCallback? onPress;
   var routName;
   ListBook(
       {required this.data_list,
       required this.single_column_assign,
       // required this.onPress,
-      required this.routName});
+      required this.routName,
+      required this.hide_change_column});
 
   @override
   _ListBook createState() => _ListBook();
@@ -49,13 +51,16 @@ class _ListBook extends State<ListBook> {
         ? Center(
             child: Column(
             children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                    onPressed: () {
-                      set_status_column(!widget.single_column_assign);
-                    },
-                    icon: Icon(FontAwesomeIcons.tableCellsLarge)),
+              Visibility(
+                visible: !widget.hide_change_column,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                      onPressed: () {
+                        set_status_column(!widget.single_column_assign);
+                      },
+                      icon: Icon(FontAwesomeIcons.tableCellsLarge)),
+                ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.74,
@@ -173,13 +178,16 @@ class _ListBook extends State<ListBook> {
         : Center(
             child: Column(
             children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                    onPressed: () {
-                      set_status_column(!widget.single_column_assign);
-                    },
-                    icon: Icon(FontAwesomeIcons.tableCells)),
+              Visibility(
+                visible: !widget.hide_change_column,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                      onPressed: () {
+                        set_status_column(!widget.single_column_assign);
+                      },
+                      icon: Icon(FontAwesomeIcons.tableCellsLarge)),
+                ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.74,
